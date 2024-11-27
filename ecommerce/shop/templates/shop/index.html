@@ -1,0 +1,11 @@
+{% extends "shop/base.html" %}
+
+{% block title %}Shop Dashboard{% endblock %}
+
+{% block body %}
+    <ul>
+        {% for product in products %}
+            <li>{{ product }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
