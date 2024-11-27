@@ -3,9 +3,23 @@
 {% block title %}Shop Dashboard{% endblock %}
 
 {% block body %}
-    <ul>
-        {% for product in products %}
-            <li>{{ product.title }}</li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <div class="row">
+            {% for product in products %}
+                <div class="col-md-3">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ product.image }}" alt="{{ product.title }}">
+                        <div class="card-body">
+                            <div class="card-title">
+                                <h3>{{ product.title }}</h3>
+                            </div>
+                            <div class="card-text">
+                                $ {{ product.price|floatformat:2 }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
