@@ -5,6 +5,6 @@ from django.shortcuts import get_list_or_404
 
 # Create your views here.
 def index(request):
-    products = get_list_or_404(Product)
+    products = Product.objects.all()
     
     return render(request, "shop/index.html", {"products": products})
