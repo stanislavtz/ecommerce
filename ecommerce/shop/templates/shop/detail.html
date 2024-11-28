@@ -1,0 +1,32 @@
+{% extends "shop/base.html" %}
+
+{% load static %}
+
+{% block title %} {{ product.title|title }} Details {% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'shop/styles.css' %}">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row my-5">
+            <div class="col-md-6">
+                <div class="card text-bg-light">
+                    <img class="card-img-top pr-img-details" src="{{ product.image }}" alt="{{ product.title }}">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card-title my-3">
+                    <h3>{{ product.title }}</h3>
+                </div>
+                <div class="card-body">
+                    <p class="pr-desc">{{ product.description }}</p>
+                    <p class="product-price">Price: $ {{ product.price|floatformat:2 }}</p>
+                    <p class="product-price">Discount Price: $ {{ product.discount_price|floatformat:2 }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
