@@ -9,8 +9,9 @@
 
 {% block body %}
     <div class="container">
-        
-        {% include "shop/includes/search-bar.html" %}
+        <div class="row">
+            {% include "shop/includes/search-bar.html" %}
+        </div>
 
         <div class="row">
             {% for product in products %}
