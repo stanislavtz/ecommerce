@@ -27,6 +27,12 @@
                                     $ {{ product.price|floatformat:2 }}
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col">
+                                    <a class="btn btn-warning my-2 ms-3" href="{% url 'detail' product.id %}">View item</a>
+                                    <a class="btn btn-warning my-2 ms-3" href="#">Add to cart</a>
+                                </div>
+                            </div>   
                         </div>
                     </a>
                 </div>
