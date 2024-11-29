@@ -9,7 +9,12 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container">
+
+<div class="container">
+        <div class="row">
+            {% include "shop/includes/search-bar.html" %}
+        </div>
+        
         <div class="row my-5">
             <div class="col-md-6">
                 <div class="card text-bg-light">
