@@ -5,11 +5,20 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 def index(request):
-    products = Product.objects.all()
     product_title = request.GET.get("item_name")
+    session_title = request.session.get("pr_session_title")
+    
+    products = Product.objects.all()
 
-    if product_title != "" and product_title is not None:
+    if product_title == "" or product_title is None:
+        if session_title:
+            del request.session["pr_session_title"]
+    elif product_title != "" and product_title is not None:
+        request.session["pr_session_title"] = product_title
         products = products.filter(title__icontains=product_title)
+    elif session_title:
+        products = products.filter(title__icontains=session_title)
+    
 
     paginator = Paginator(products, 4)
     page = request.GET.get("page")
