@@ -8,11 +8,7 @@
 {% block title %}Shop Dashboard{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <div class="row">
-            {% include "shop/includes/search-bar.html" %}
-        </div>
-
+    <div class="container mt-5">
         <div class="row">
             {% for product in products %}
                 <div class="col-md-3 my-3">
