@@ -20,7 +20,7 @@ def index(request):
         products = products.filter(title__icontains=session_title)
     
 
-    paginator = Paginator(products, 4)
+    paginator = Paginator(products, 8)
     page = request.GET.get("page")
     products = paginator.get_page(page)
     

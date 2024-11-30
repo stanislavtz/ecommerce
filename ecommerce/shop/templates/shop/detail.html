@@ -9,13 +9,8 @@
 {% endblock %}
 
 {% block body %}
-
-<div class="container">
-        <div class="row">
-            {% include "shop/includes/search-bar.html" %}
-        </div>
-        
-        <div class="row my-5">
+    <div class="container">
+        <div class="row my-3">
             <div class="col-md-6">
                 <div class="card text-bg-light">
                     <img class="card-img-top pr-img-details" src="{{ product.image }}" alt="{{ product.title }}">

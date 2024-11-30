@@ -8,7 +8,7 @@
 {% block title %}Shop Dashboard{% endblock %}
 
 {% block body %}
-    <div class="container mt-5">
+    <div class="container">
         <div class="row">
             {% for product in products %}
                 <div class="col-md-3 my-3">
@@ -40,7 +40,7 @@
         </div>
 
         <div class="row">
-            <div class="col offset-md-5 my-3">
+            <div class="col offset-md-5 my-5">
                 <ul class="pagination">
                     <li class="page-item">
                         {% if products.has_previous %}
