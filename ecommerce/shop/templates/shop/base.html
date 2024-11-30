@@ -22,23 +22,34 @@
         cart = JSON.parse(localStorage.getItem("cart"));
     };
 
+    calculateTotalItemsQty(cart);
+
     $(document).on("click", ".additembtn", function() {
         const itemId = this.id;
         const priceEl = document.querySelector(`.pr-price-${itemId}`)
         const itemPrice = priceEl.getAttribute("value");
 
+        
         if (!cart[itemId]) {
             cart[itemId] = {
                 "qty": 0,
                 "price": itemPrice
             };
         }
-
+        
         cart[itemId]["qty"] ++;
-
-        console.log(JSON.stringify(cart));
+        
         localStorage.setItem("cart", JSON.stringify(cart));
+
+        calculateTotalItemsQty(cart);
+        
     });
+
+    function calculateTotalItemsQty(cart) {
+        const totalItemsEl = document.querySelector(".total-items");
+        const totalItems = Object.values(cart).map(x => x["qty"]).reduce((acc, val) => acc+val, 0);
+        totalItemsEl.innerHTML = totalItems;
+    }
 
 </script>
 </html>
