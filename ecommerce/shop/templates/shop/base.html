@@ -45,6 +45,9 @@
         
     });
 
+    const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+    const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+
     function calculateTotalItemsQty(cart) {
         const totalItemsEl = document.querySelector(".total-items");
         const totalItems = Object.values(cart).map(x => x["qty"]).reduce((acc, val) => acc+val, 0);
