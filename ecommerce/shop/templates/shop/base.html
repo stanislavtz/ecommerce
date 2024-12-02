@@ -15,9 +15,6 @@
     {% block body %}{% endblock %}
 </body>
 <script>
-    const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
-    const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
-
     let cart = {};
 
     if (localStorage.getItem("cart")) {
@@ -51,7 +48,6 @@
     displayCart(cart);
 
     function displayCart(cart) {
-
         let cartContent = "<h5>My cart content</h5>"
         let cartIndex = 1;
         
@@ -63,14 +59,14 @@
         
         document.getElementById("cart").setAttribute("data-bs-content", cartContent);
 
-        const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
-        const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));        
+        const popoverEl = document.querySelector('[data-bs-toggle="popover"]');
+        const popoverInst = new bootstrap.Popover(popoverEl);      
     }
 
     function calculateTotalItemsQty(cart) {
         const totalItemsEl = document.querySelector(".total-items");
         const totalItems = Object.values(cart).map(x => x["qty"]).reduce((acc, val) => acc+val, 0);
-        totalItemsEl.innerHTML = totalItems;
+        totalItemsEl.textContent = totalItems;
     }
 
 </script>
