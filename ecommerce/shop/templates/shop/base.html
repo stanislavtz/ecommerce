@@ -15,7 +15,7 @@
     {% block body %}{% endblock %}
 </body>
 <script>
-    let cart = {};
+    let cart = [];
 
     if (localStorage.getItem("cart")) {
         cart = JSON.parse(localStorage.getItem("cart"));
@@ -26,22 +26,30 @@
     $(document).on("click", ".additembtn", function() {
         const itemId = this.id;
         
-        const priceEl = document.querySelector(`.pr-price-${itemId}`)
-        const itemPrice = priceEl.getAttribute("value");
+        const priceEl = document.querySelector(`.pr-price-${itemId}`);
+        const itemPrice = +priceEl.getAttribute("value");
 
-        
-        if (!cart[itemId]) {
-            cart[itemId] = {
-                "qty": 0,
-                "price": itemPrice
-            };
+        const nameEl = document.getElementById(`nm${itemId}`);
+        const itemName = nameEl.innerHTML.trim();
+
+        const item = {
+            "name": itemName,
+            "qty": 1,
+            "price": itemPrice
+        };
+
+        let searchedItem = cart.find(x => x.name === item.name);
+
+        if(!searchedItem) {
+            cart.push(item)
+        } else {
+            searchedItem.qty += 1;
         }
-        
-        cart[itemId]["qty"] ++;
+
+        calculateTotalItemsQty(cart);
         
         localStorage.setItem("cart", JSON.stringify(cart));
 
-        calculateTotalItemsQty(cart);
         location.reload();
     });
 
@@ -52,7 +60,7 @@
         let cartIndex = 1;
         
         for(item in cart) {
-            let itemName = document.getElementById(`nm${item}`).innerHTML;
+            let itemName = document.getElementById(`nm${item}`).innerHTML.trim();
             cartContent += `${cartIndex}. Name: ${itemName}. Qty: ${cart[item].qty}. Price: ${cart[item].price}<br>`;
             cartIndex++;
         }
@@ -67,7 +75,7 @@
 
     function calculateTotalItemsQty(cart) {
         const totalItemsEl = document.querySelector(".total-items");
-        const totalItems = Object.values(cart).map(x => x["qty"]).reduce((acc, val) => acc+val, 0);
+        const totalItems = cart.reduce((acc, el) => acc + el.qty, 0)
         totalItemsEl.textContent = totalItems;
     }
 
