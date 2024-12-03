@@ -57,6 +57,8 @@
             cartIndex++;
         }
         
+        cartContent += "<a href='{% url "checkout" %}' class='btn btn-danger'>Checkout</a>";
+
         document.getElementById("cart").setAttribute("data-bs-content", cartContent);
 
         const popoverEl = document.querySelector('[data-bs-toggle="popover"]');
