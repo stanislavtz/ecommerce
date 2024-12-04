@@ -59,7 +59,7 @@
     
     createCartElement(cart);
 
-    displayPopoverCart(cart);
+    displayPopoverCart(JSON.parse(localStorage.getItem("cart")));
 
     function createCartElement(cart) {
         let totalOrderPrice = 0;
@@ -79,15 +79,17 @@
 
         const totalOrderPriceEl = `<span class="badge bg-dark mt-3"><p class="h5 mx-2 my-1">Total price: $ ${totalOrderPrice.toFixed(2)}</p></span>`;
         $("#checkout-item-list").append(totalOrderPriceEl);
+
+        $("#carttotal").val(`$ ${totalOrderPrice.toFixed(2)}`);
     }
 
     function displayPopoverCart(cart) {
+        console.log(cart)
         let cartContent = "<h5>My cart content</h5>"
         let cartIndex = 1;
         
         for(item of cart) {
-            let itemName = document.getElementById(`nm${item.id}`).innerHTML.trim();
-            cartContent += `${cartIndex}. Name: ${itemName}. Qty: ${item.qty}. Price: ${item.price}<br>`;
+            cartContent += `${cartIndex}. Name: ${item.name}. Qty: ${item.qty}. Price: ${item.price}<br>`;
             cartIndex++;
         }
         
