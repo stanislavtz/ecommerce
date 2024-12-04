@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from .models import Product
 from django.core.paginator import Paginator
 
+from .models import Product
 
 # Create your views here.
 def index(request):

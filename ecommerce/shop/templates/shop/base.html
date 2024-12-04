@@ -21,6 +21,15 @@
         cart = JSON.parse(localStorage.getItem("cart"));
     };
 
+    for(item of cart) {
+        const totalPrice = item.qty * item.price;
+        const listEl = `<li class="list-group-item d-flex justify-content-between align-items-center">
+                            Name: ${item.name}, Qty: ${item.qty}, Price: $ ${item.price.toFixed(2)}
+                            <span class="badge bg-secondary rounded-pill"><p class="h6 mx-2 my-1">Total price: $ ${totalPrice.toFixed(2)}</p></span>
+                        </li>`;
+        $("#checkout-item-list").append(listEl);
+    }
+
     calculateTotalItemsQty(cart);
 
     $(document).on("click", ".additembtn", function() {
@@ -33,6 +42,7 @@
         const itemName = nameEl.innerHTML.trim();
 
         const item = {
+            "id": itemId,
             "name": itemName,
             "qty": 1,
             "price": itemPrice
@@ -59,9 +69,9 @@
         let cartContent = "<h5>My cart content</h5>"
         let cartIndex = 1;
         
-        for(item in cart) {
-            let itemName = document.getElementById(`nm${item}`).innerHTML.trim();
-            cartContent += `${cartIndex}. Name: ${itemName}. Qty: ${cart[item].qty}. Price: ${cart[item].price}<br>`;
+        for(item of cart) {
+            let itemName = document.getElementById(`nm${item.id}`).innerHTML.trim();
+            cartContent += `${cartIndex}. Name: ${itemName}. Qty: ${item.qty}. Price: ${item.price}<br>`;
             cartIndex++;
         }
         
