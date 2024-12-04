@@ -20,15 +20,23 @@
     if (localStorage.getItem("cart")) {
         cart = JSON.parse(localStorage.getItem("cart"));
     };
+    let totalOrderPrice = 0;
 
     for(item of cart) {
         const totalPrice = item.qty * item.price;
+        totalOrderPrice += totalPrice;
+
         const listEl = `<li class="list-group-item d-flex justify-content-between align-items-center">
                             Name: ${item.name}, Qty: ${item.qty}, Price: $ ${item.price.toFixed(2)}
-                            <span class="badge bg-secondary rounded-pill"><p class="h6 mx-2 my-1">Total price: $ ${totalPrice.toFixed(2)}</p></span>
+                            <span class="badge bg-light text-dark rounded-pill">
+                                <p class="h6 mx-2 my-1">Total price: $ ${totalPrice.toFixed(2)}</p>
+                            </span>
                         </li>`;
         $("#checkout-item-list").append(listEl);
     }
+
+    const totalOrderPriceEl = `<span class="badge bg-dark mt-3"><p class="h5 mx-2 my-1">Total price: $ ${totalOrderPrice.toFixed(2)}</p></span>`;
+    $("#checkout-item-list").append(totalOrderPriceEl);
 
     calculateTotalItemsQty(cart);
 
