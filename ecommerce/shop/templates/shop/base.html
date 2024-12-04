@@ -61,6 +61,11 @@
 
     displayPopoverCart(cart);
 
+    $("#order").submit(function() {
+        localStorage.clear();
+        cart = [];
+    })
+
     function createCartElement(cart) {
         let totalOrderPrice = 0;
 

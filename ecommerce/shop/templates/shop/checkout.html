@@ -21,7 +21,7 @@
             <h4 class="mt-4">User info:</h4>
         </div>
         <div class="row">
-            <form class="row g-3 mb-5" method="POST">
+            <form id="order" class="row g-3 mb-5" method="POST">
                 {% csrf_token %}
                 <input id="formcartitems" type="hidden" name="cart-items">
                 <input id="carttotal" type="hidden" name="cart-total">
