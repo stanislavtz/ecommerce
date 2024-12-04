@@ -59,7 +59,7 @@
     
     createCartElement(cart);
 
-    displayPopoverCart(JSON.parse(localStorage.getItem("cart")));
+    displayPopoverCart(cart);
 
     function createCartElement(cart) {
         let totalOrderPrice = 0;
@@ -68,7 +68,7 @@
             const totalPrice = item.qty * item.price;
             totalOrderPrice += totalPrice;
 
-            const listEl = `<li class="list-group-item d-flex justify-content-between align-items-center my-2 border-1git a">
+            const listEl = `<li class="list-group-item d-flex justify-content-between align-items-center my-2 border border-secondary rounded">
                                 Name: ${item.name}, Qty: ${item.qty}, Price: $ ${item.price.toFixed(2)}
                                 <span class="badge bg-light text-dark rounded-pill">
                                     <p class="h6 mx-2 my-1">Total price: $ ${totalPrice.toFixed(2)}</p>
